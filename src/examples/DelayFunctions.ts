@@ -6,7 +6,18 @@ export default {
     random : (time : number, pixel : Pixel) => {
         return random(time * 0.1, time);
     },
-    stepByStep : (time : number, pixel : Pixel, animation : Animation) => {
+    fromTop : (time : number, pixel : Pixel, animation : Animation) => {
         return (pixel.y / animation.image.h) * time;
+    },
+    fromCenterX : (time : number, pixel : Pixel, animation : Animation) => {
+
+        let w = animation.image.w / 2;
+
+        if(pixel.x > w){
+            return (pixel.x - w) / w;
+        }else{
+            return (w - pixel.x) / w;
+        }
+
     }
 }
