@@ -14,6 +14,8 @@ export default class Animation{
     public elements : AnimationElement[];
     public drawFunction : DrawFunction;
 
+    public handBreak : boolean = false;
+
     public constructor(
         canvas : Canvas,
         image : Image,
@@ -47,7 +49,13 @@ export default class Animation{
         return this.elements.every(element => element.finished);
     }
 
+    public stop(){
+        this.handBreak = true;
+    }
+
     public start(){
+
+        this.handBreak = false;
 
         let animation = () => {
 
@@ -56,7 +64,7 @@ export default class Animation{
             this.canvas.clear();
             this.canvas.drawAnimation(this);
 
-            if(!this.isFinished()){
+            if(!this.isFinished() && !this.handBreak){
                 requestAnimationFrame(animation);
             }
 
