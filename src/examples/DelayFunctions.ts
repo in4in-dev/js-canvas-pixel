@@ -14,9 +14,9 @@ export default {
         let w = animation.image.w / 2;
 
         if(pixel.x > w){
-            return (pixel.x - w) / w;
+            return (pixel.x - w) / w * time;
         }else{
-            return (w - pixel.x) / w;
+            return (w - pixel.x) / w * time;
         }
 
     }
